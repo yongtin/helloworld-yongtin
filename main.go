@@ -25,7 +25,7 @@ func init() {
 }
 
 func main() {
-  var port = 3000
+  var port = "3000"
   if os.Getenv("HTTP_PLATFORM_PORT") != "" {
     port = os.Getenv("HTTP_PLATFORM_PORT")
   }
@@ -42,5 +42,5 @@ func main() {
     "port": port,
   }).Info(fmt.Sprintf("Starting API"))
 
-  http.ListenAndServe(fmt.Sprintf(":%d",port), n)
+  http.ListenAndServe(fmt.Sprintf(":%s",port), n)
 }
