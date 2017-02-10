@@ -2,6 +2,7 @@ package main
 
 import (
   "fmt"
+  "os"
   "net/http"
   "github.com/urfave/negroni"
   "github.com/Sirupsen/logrus"
@@ -25,6 +26,10 @@ func init() {
 
 func main() {
   var port = 3000
+  if os.Getenv("HTTP_PLATFORM_PORT") != "" {
+    port = os.Getenv("HTTP_PLATFORM_PORT")
+  }
+
   mux := http.NewServeMux()
   mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
     fmt.Fprintf(w, "Welcome to the home page!")
