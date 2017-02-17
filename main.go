@@ -34,6 +34,9 @@ func main() {
   mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
     fmt.Fprintf(w, "Welcome to the home page!")
   })
+  mux.HandleFunc("/healthz", func(w http.ResponseWriter, req *http.Request) {
+    fmt.Fprintf(w, "ok")
+  })
 
   n := negroni.Classic() // Includes some default middlewares
   n.UseHandler(mux)
